@@ -1,0 +1,15 @@
+<div>
+  <span>{{numberOne}}</span> *
+  <span>{{numberTwo}}</span> =
+  <span>?</span>
+</div>
+
+<div>
+  <span *ngFor="let value of cases" (click)=selectCase(value)>
+    {{value}}
+  </span>
+</div>
+
+<div>
+  {{displayResult}}
+</div>

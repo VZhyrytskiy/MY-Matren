@@ -24,6 +24,8 @@ export class AppComponent implements OnInit{
     else {
       this.displayResult = 'Хм... Не правильно!';
     }
+
+    setTimeout(() => this.displayResult = '', 2000);
     this.generateExpression();
   }
 

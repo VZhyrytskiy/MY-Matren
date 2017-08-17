@@ -42,7 +42,7 @@ export class AppComponent implements OnInit{
 
     const cases: Set<number> = new Set([this.result]);
     while (cases.size < 3) {
-      cases.add(this.randomInteger(0, 10));
+      cases.add(this.randomInteger(0, 20));
     }
     this.cases = [];
     cases.forEach(val => this.cases.push(val));

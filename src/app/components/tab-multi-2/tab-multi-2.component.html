@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Пример</h1>
+  <div class="row m-b-3">
+    <span class="col text-center display-1">{{numberOne}}</span>
+    <span class="col text-center display-1">*</span>
+    <span class="col text-center display-1">{{numberTwo}}</span>
+    <span class="col text-center display-1">=</span>
+    <span class="col text-center display-1">?</span>
+  </div>
+
+  <h1>Выбери верный вариант:</h1>
+  <div class="row">
+    <span
+      class="col display-1 text-center img-thumbnail hand"
+      *ngFor="let value of cases" (click)=selectCase(value)>
+      {{value}}
+    </span>
+  </div>
+
+<div class="row">
+  <span class="col display-1 text-center">{{displayResult}}</span>
+</div>
+</div>

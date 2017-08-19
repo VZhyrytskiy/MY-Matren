@@ -11,6 +11,7 @@ export class TabPlus2Component implements OnInit {
   result: number;
   cases: Array<number>;
   displayResult: string;
+  resultClass: string;
 
   constructor() { }
 
@@ -20,9 +21,11 @@ export class TabPlus2Component implements OnInit {
 
   selectCase(value: number) {
     if (value === this.result) {
+      this.resultClass = 'green';
       this.displayResult = 'Ура!!! Правильно!';
     }
     else {
+      this.resultClass = 'red';
       this.displayResult = 'Хм... Не правильно!';
     }
 

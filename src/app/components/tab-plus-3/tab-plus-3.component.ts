@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-tab-multi-2',
-  templateUrl: './tab-multi-2.component.html',
-  styleUrls: ['./tab-multi-2.component.less']
+  selector: 'app-tab-plus-3',
+  templateUrl: './tab-plus-3.component.html',
+  styleUrls: ['./tab-plus-3.component.less']
 })
-export class TabMulti2Component implements OnInit {
+export class TabPlus3Component implements OnInit {
   numberOne: number;
   numberTwo: number;
   result: number;
@@ -30,23 +30,23 @@ export class TabMulti2Component implements OnInit {
     }
 
     setTimeout(() => this.displayResult = '', 2000);
-    this.generateExpression();
-  }
+      this.generateExpression();
+    }
 
   private generateExpression() {
     if (this.randomInteger(0, 1) === 0) {
-      this.numberOne = 2;
-      this.numberTwo = this.randomInteger(0, 10);
+      this.numberOne = 3;
+      this.numberTwo = this.randomInteger(0, 7);
     }
     else {
-      this.numberOne = this.randomInteger(0, 10);
-      this.numberTwo = 2;
+      this.numberOne = this.randomInteger(0, 7);
+      this.numberTwo = 3;
     }
-    this.result = this.numberOne * this.numberTwo;
+    this.result = this.numberOne + this.numberTwo;
 
     const cases: Set<number> = new Set([this.result]);
     while (cases.size < 3) {
-      cases.add(this.randomInteger(0, 20));
+      cases.add(this.randomInteger(0, 10));
     }
     this.cases = [];
     cases.forEach(val => this.cases.push(val));

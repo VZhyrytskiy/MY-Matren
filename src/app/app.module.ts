@@ -1,18 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AppRoutingModule } from './app.routing.module';
+
 import { AppComponent } from './app.component';
-import { TabMulti2Component } from './components/tab-multi-2/tab-multi-2.component';
-import { TabPlus2Component } from './components/tab-plus-2/tab-plus-2.component';
+import {
+  HomeComponent,
+  TabMulti2Component,
+  TabPlus2Component,
+  TabPlus3Component,
+  PageNotFoundComponent
+} from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    PageNotFoundComponent,
     TabMulti2Component,
-    TabPlus2Component
+    TabPlus2Component,
+    TabPlus3Component
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

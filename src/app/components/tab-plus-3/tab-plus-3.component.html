@@ -1,0 +1,27 @@
+<a routerLink="/home">Повернутись на головну</a>
+<br>
+
+<div class="container">
+    <h1>Приклад</h1>
+    <div class="row m-b-3">
+      <span class="col text-center display-1">{{numberOne}}</span>
+      <span class="col text-center display-1">+</span>
+      <span class="col text-center display-1">{{numberTwo}}</span>
+      <span class="col text-center display-1">=</span>
+      <span class="col text-center display-1">?</span>
+    </div>
+    <br><br><br><br><br>
+    <h1>Вибери відповідь:</h1>
+    <div class="row">
+      <span
+        class="col display-1 text-center img-thumbnail hand"
+        *ngFor="let value of cases" (click)=selectCase(value)>
+        {{value}}
+      </span>
+    </div>
+
+  <div class="row">
+    <span class="col display-1 text-center"
+    [ngClass]="resultClass">{{displayResult}}</span>
+  </div>
+  </div>

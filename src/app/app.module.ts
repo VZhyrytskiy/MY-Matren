@@ -7,10 +7,10 @@ import { AppComponent } from './app.component';
 import {
   HomeComponent,
   TabMulti2Component,
-  TabPlus2Component,
-  TabPlus3Component,
+  TabPlusMinus10Component,
   PageNotFoundComponent
 } from './components';
+import { UtilsService } from './services';
 
 @NgModule({
   declarations: [
@@ -18,14 +18,13 @@ import {
     HomeComponent,
     PageNotFoundComponent,
     TabMulti2Component,
-    TabPlus2Component,
-    TabPlus3Component
+    TabPlusMinus10Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,8 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   HomeComponent,
   TabMulti2Component,
-  TabPlus2Component,
-  TabPlus3Component,
+  TabPlusMinus10Component,
   PageNotFoundComponent
 } from './components';
 
@@ -20,16 +19,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'tab/:operator/:number',
+    component: TabPlusMinus10Component
+  },
+  {
     path: 'tab-multi-2',
     component: TabMulti2Component
-  },
-  {
-    path: 'tab-plus-2',
-    component: TabPlus2Component
-  },
-  {
-    path: 'tab-plus-3',
-    component: TabPlus3Component
   },
   {
     // The router will match this route if the URL requested

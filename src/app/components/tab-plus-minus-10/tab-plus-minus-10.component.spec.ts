@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TabPlus2Component } from './tab-plus-2.component';
+import { TabPlusMinus10Component } from './tab-plus-minus-10.component';
 
-describe('TabPlus2Component', () => {
-  let component: TabPlus2Component;
-  let fixture: ComponentFixture<TabPlus2Component>;
+describe('TabPlusMinus10Component', () => {
+  let component: TabPlusMinus10Component;
+  let fixture: ComponentFixture<TabPlusMinus10Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TabPlus2Component ]
+      declarations: [ TabPlusMinus10Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TabPlus2Component);
+    fixture = TestBed.createComponent(TabPlusMinus10Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

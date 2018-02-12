@@ -11,7 +11,7 @@ import { UtilsService } from './../../services';
 export class TabPlusMinus10Component implements OnInit {
   numberOne: number;
   numberTwo: number;
-  number: number;   // определяетна сколько табличка
+  number: number; // определяетна сколько табличка
   operator: string; // определяет какая табличка +, -
   result: number;
   cases: Array<number>;
@@ -21,7 +21,7 @@ export class TabPlusMinus10Component implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private utils: UtilsService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -33,21 +33,18 @@ export class TabPlusMinus10Component implements OnInit {
     });
   }
 
-
-
   selectCase(value: number) {
     if (value === this.result) {
       this.resultClass = 'green';
       this.displayResult = 'Ура!!! Правильно!';
 
       this.generateExpression();
-    }
-    else {
+    } else {
       this.resultClass = 'red';
       this.displayResult = 'Хм... Не правильно! Спробуй ще раз.';
     }
 
-    setTimeout(() => this.displayResult = '', 2000);
+    setTimeout(() => (this.displayResult = ''), 2000);
   }
 
   private generateExpression() {
@@ -57,23 +54,25 @@ export class TabPlusMinus10Component implements OnInit {
       if (this.utils.randomInteger(0, 1) === 0) {
         this.numberOne = this.number;
         this.numberTwo = this.utils.randomInteger(0, 10 - this.number);
-      }
-      else {
+      } else {
         this.numberOne = this.utils.randomInteger(0, 10 - this.number);
         this.numberTwo = this.number;
       }
     }
+
     // якщо віднімання
+    // друге число те, на скільки табличка на віднімання
+    // перше число в межах від числа до 10.
+    // Наприклад, якщо табличка віднімання на 3, то друге число 3, а перше число авід 3 до 10.
     else {
       this.numberTwo = this.number;
-      this.numberOne = this.utils.randomInteger(this.numberTwo, 10 - this.number);
+      this.numberOne = this.utils.randomInteger(this.numberTwo, 10);
     }
 
     // визначаємо правильну відповідь
     if (this.operator === '+') {
       this.result = this.numberOne + this.numberTwo;
-    }
-    else {
+    } else {
       this.result = this.numberOne - this.numberTwo;
     }
 

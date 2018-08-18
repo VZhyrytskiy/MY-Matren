@@ -51,11 +51,11 @@ export class TabPlusMinus10Component implements OnInit {
     // якщо додавання
     if (this.operator === '+') {
       // визначаємо чи ставити число на перше місце чи на друге
-      if (this.utils.randomInteger(0, 1) === 0) {
+      if (this.utils.getRandomInteger(0, 1) === 0) {
         this.numberOne = this.number;
-        this.numberTwo = this.utils.randomInteger(0, 10 - this.number);
+        this.numberTwo = this.utils.getRandomInteger(0, 10 - this.number);
       } else {
-        this.numberOne = this.utils.randomInteger(0, 10 - this.number);
+        this.numberOne = this.utils.getRandomInteger(0, 10 - this.number);
         this.numberTwo = this.number;
       }
     }
@@ -66,7 +66,7 @@ export class TabPlusMinus10Component implements OnInit {
     // Наприклад, якщо табличка віднімання на 3, то друге число 3, а перше число авід 3 до 10.
     else {
       this.numberTwo = this.number;
-      this.numberOne = this.utils.randomInteger(this.numberTwo, 10);
+      this.numberOne = this.utils.getRandomInteger(this.numberTwo, 10);
     }
 
     // визначаємо правильну відповідь
@@ -79,7 +79,7 @@ export class TabPlusMinus10Component implements OnInit {
     // формуємо варіанти відповіді
     const cases: Set<number> = new Set([this.result]);
     while (cases.size < 3) {
-      cases.add(this.utils.randomInteger(0, 10));
+      cases.add(this.utils.getRandomInteger(0, 10));
     }
     this.cases = [];
     cases.forEach(val => this.cases.push(val));

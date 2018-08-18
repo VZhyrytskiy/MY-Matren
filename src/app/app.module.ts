@@ -10,7 +10,6 @@ import {
   TabPlusMinus10Component,
   PageNotFoundComponent
 } from './components';
-import { UtilsService } from './services';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,7 @@ import { UtilsService } from './services';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [UtilsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

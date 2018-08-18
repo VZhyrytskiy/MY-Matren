@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UtilsService {
 
-  constructor() { }
-
-  randomInteger(a, b): number {
+  getRandomInteger(a, b): number {
     return Math.floor(Math.random() * (b - a + 1)) + a;
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { UtilsService } from './../../services';
+import { UtilsService } from '../../services';
 
 @Component({
   selector: 'app-tab-plus-minus-10',

@@ -15,12 +15,15 @@ import { DataService } from '../../services';
   styleUrls: ['./class-school-tasks.component.less']
 })
 export class ClassSchoolTasksComponent implements OnInit {
-  selectedClassID: string;
-  selectedTopicID: string;
-  selectedTaskID: string;
-  selectedSubtaskID: string;
+  currentSubtask = {
+    classID: null,
+    topicID: null,
+    taskID: null,
+    subtaskIndex: null,
+    subtask: null,
+    task: null
+  };
 
-  task: any;
   condition: string;
   cases: Array<any>;
 
@@ -31,22 +34,25 @@ export class ClassSchoolTasksComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    /**
+     * По параметрам урла получаем текущую подзадачу и рендерим ее.
+     */
     this.activatedRoute.paramMap
       .pipe(
         switchMap((params: Params) => {
-          this.selectedClassID = params.get('class');
-          this.selectedTopicID = params.get('topic');
-          this.selectedTaskID = params.get('task');
+          this.currentSubtask.classID = params.get('class');
+          this.currentSubtask.topicID = params.get('topic');
+          this.currentSubtask.taskID = params.get('task');
 
-          this.dataService.setClass(+this.selectedClassID);
-          this.dataService.setTopic(+this.selectedTopicID);
+          this.dataService.setClass(+this.currentSubtask.classID);
+          this.dataService.setTopic(+this.currentSubtask.topicID);
 
-          return of(this.dataService.getTask(+this.selectedTaskID));
+          return of(this.dataService.getTask(+this.currentSubtask.taskID));
         })
       )
       .subscribe(
         task => {
-          this.task = task;
+          this.currentSubtask.task = task;
           this.renderSubtask();
         },
         err => console.log(err)
@@ -54,28 +60,29 @@ export class ClassSchoolTasksComponent implements OnInit {
   }
 
   onNext() {
-    // Сначала получаем индекс
-    const subtaskIndex = this.dataService.getNextSubtaskIndex(this.task);
+    // Сначала получаем индекс подзадачи
+    this.currentSubtask.subtaskIndex = this.dataService.getNextSubtaskIndex(
+      this.currentSubtask.task
+    );
     // а затем только задачу, так как ее ид может измениться, если закончаться подзадачи
-    const taskID = this.dataService.getTaskID();
-
-    console.log('class', this.selectedClassID);
-    console.log('topic', this.selectedTopicID);
-    console.log('taskID', taskID);
-    console.log('subtaskIndex', subtaskIndex);
+    this.currentSubtask.taskID = this.dataService.getTaskID();
 
     this.router.navigate([
       'class-school',
-      this.selectedClassID,
-      this.selectedTopicID,
-      taskID,
-      subtaskIndex
+      this.currentSubtask.classID,
+      this.currentSubtask.topicID,
+      this.currentSubtask.taskID,
+      this.currentSubtask.subtaskIndex
     ]);
   }
 
   private renderSubtask() {
-    const subtask = this.dataService.getSubtask(this.task);
-    this.condition = this.dataService.getSubtaskCondition(subtask);
-    this.cases = this.dataService.getSubtaskCases(subtask);
+    this.currentSubtask.subtask = this.dataService.getSubtask(
+      this.currentSubtask.task
+    );
+    this.condition = this.dataService.getSubtaskCondition(
+      this.currentSubtask.subtask
+    );
+    this.cases = this.dataService.getSubtaskCases(this.currentSubtask.subtask);
   }
 }

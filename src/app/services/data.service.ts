@@ -9,21 +9,22 @@ enum Languages {
   providedIn: 'root'
 })
 export class DataService {
-  options = {};
-  // выбранный язык
-  selectedLanguage = Languages.ru;
+  options = {
+    // выбранный язык
+    language: Languages.ru,
 
-  // класс
-  selectedClass = 1;
+    // класс
+    class: 1,
 
-  // номер темы
-  selectedTopic = 1;
+    // номер темы
+    topic: 1,
 
-  // id задачи
-  taskID = 70;
+    // id задачи
+    taskID: 70,
 
-  // индекс подзадачи
-  subtaskIndex = 0;
+    // индекс подзадачи
+    subtaskIndex: 0
+  };
 
   data = {
     // первый класс
@@ -112,36 +113,36 @@ export class DataService {
   };
 
   // метод устанавливает язык
-  setLanguage(selectedLanguage: Languages): void {
-    this.selectedLanguage = selectedLanguage;
+  setLanguage(language: Languages): void {
+    this.options.language = language;
   }
 
   // метод устанавливает класс
   setClass(selectedClass: number): void {
-    this.selectedClass = selectedClass;
+    this.options.class = selectedClass;
   }
 
-  setTopic(selectedTopic: number): void {
-    this.selectedTopic = selectedTopic;
+  setTopic(topic: number): void {
+    this.options.topic = topic;
   }
 
   // метод возвращает название темы
   getTopicTitle(): string {
-    return this.data[this.selectedClass][this.selectedTopic].title[
-      this.selectedLanguage
+    return this.data[this.options.class][this.options.topic].title[
+      this.options.language
     ];
   }
 
   // метод возвращает задачу
-  getTask(taskId: number): any {
-    if (!taskId) {
+  getTask(taskID: number): any {
+    if (!taskID) {
       return;
     }
-    return this.data[this.selectedClass][this.selectedTopic].tasks[taskId];
+    return this.data[this.options.class][this.options.topic].tasks[taskID];
   }
 
   getTaskID(): number {
-    return this.taskID;
+    return this.options.taskID;
   }
 
   // метод возвращает количество подзадач
@@ -151,23 +152,23 @@ export class DataService {
 
   // метод возвращает следующую подзадачу
   getSubtask(task: Array<any>): any {
-    return task[this.subtaskIndex];
+    return task[this.options.subtaskIndex];
   }
 
   // метод возвращает индекс следующей подзадачи
   getNextSubtaskIndex(task: Array<any>): number {
-    if (this.subtaskIndex < this.getSubtasksCount(task) - 1) {
-      this.subtaskIndex++;
+    if (this.options.subtaskIndex < this.getSubtasksCount(task) - 1) {
+      this.options.subtaskIndex++;
     } else {
-      this.taskID++;
-      this.subtaskIndex = 0;
+      this.options.taskID++;
+      this.options.subtaskIndex = 0;
     }
-    return this.subtaskIndex;
+    return this.options.subtaskIndex;
   }
 
   // метод возвращает условие подзадачи
   getSubtaskCondition(subtask: any): string {
-    return subtask.condition[this.selectedLanguage];
+    return subtask.condition[this.options.language];
   }
 
   // метод возвращает варианты ответов

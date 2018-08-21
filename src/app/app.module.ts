@@ -8,7 +8,8 @@ import {
   HomeComponent,
   TabMulti2Component,
   TabPlusMinus10Component,
-  PageNotFoundComponent
+  PageNotFoundComponent,
+  ClassSchoolTasksComponent
 } from './components';
 
 @NgModule({
@@ -17,7 +18,8 @@ import {
     HomeComponent,
     PageNotFoundComponent,
     TabMulti2Component,
-    TabPlusMinus10Component
+    TabPlusMinus10Component,
+    ClassSchoolTasksComponent
   ],
   imports: [
     BrowserModule,

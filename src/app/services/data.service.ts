@@ -9,10 +9,21 @@ enum Languages {
   providedIn: 'root'
 })
 export class DataService {
-  selectedLanguage = Languages.ru; // выбранный язык
-  selectedClass = 1; // класс
-  selectedTopic = 1; // номер темы
-  nextSubtaskIndex = 0; // индекс следующей подзадачи
+  options = {};
+  // выбранный язык
+  selectedLanguage = Languages.ru;
+
+  // класс
+  selectedClass = 1;
+
+  // номер темы
+  selectedTopic = 1;
+
+  // id задачи
+  taskID = 70;
+
+  // индекс подзадачи
+  subtaskIndex = 0;
 
   data = {
     // первый класс
@@ -110,7 +121,7 @@ export class DataService {
     this.selectedClass = selectedClass;
   }
 
-  setTopic(selectedTopic: nummber): void {
+  setTopic(selectedTopic: number): void {
     this.selectedTopic = selectedTopic;
   }
 
@@ -129,14 +140,29 @@ export class DataService {
     return this.data[this.selectedClass][this.selectedTopic].tasks[taskId];
   }
 
+  getTaskID(): number {
+    return this.taskID;
+  }
+
   // метод возвращает количество подзадач
   getSubtasksCount(task: Array<any>): number {
     return task.length;
   }
 
   // метод возвращает следующую подзадачу
-  getNexSubtask(task: Array<any>): any {
-    return task[this.nextSubtaskIndex++];
+  getSubtask(task: Array<any>): any {
+    return task[this.subtaskIndex];
+  }
+
+  // метод возвращает индекс следующей подзадачи
+  getNextSubtaskIndex(task: Array<any>): number {
+    if (this.subtaskIndex < this.getSubtasksCount(task) - 1) {
+      this.subtaskIndex++;
+    } else {
+      this.taskID++;
+      this.subtaskIndex = 0;
+    }
+    return this.subtaskIndex;
   }
 
   // метод возвращает условие подзадачи

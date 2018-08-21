@@ -5,6 +5,7 @@ import {
   HomeComponent,
   TabMulti2Component,
   TabPlusMinus10Component,
+  ClassSchoolTasksComponent,
   PageNotFoundComponent
 } from './components';
 
@@ -27,6 +28,11 @@ const routes: Routes = [
     component: TabMulti2Component
   },
   {
+    // задачи классической школы
+    path: 'class-school/:class/:topic/:task/:subtask',
+    component: ClassSchoolTasksComponent
+  },
+  {
     // The router will match this route if the URL requested
     // doesn't match any paths for routes defined in our configuration
     path: '**',
@@ -35,10 +41,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
-
